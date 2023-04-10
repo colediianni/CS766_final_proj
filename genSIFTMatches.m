@@ -14,8 +14,10 @@ function [xs, xd] = genSIFTMatches(imgs, imgd, impl)
             temp = onCleanup(@()path(orig_path));
         end
         
-        imgs = im2single(imgs); gray_s = rgb2gray(imgs);
-        imgd = im2single(imgd); gray_d = rgb2gray(imgd);
+        gray_s = imgs;
+        gray_d = imgd;
+%         imgs = im2single(imgs); gray_s = rgb2gray(imgs);
+%         imgd = im2single(imgd); gray_d = rgb2gray(imgd);
         
         [Fs, Ds] = vl_sift(gray_s);
         % Each column of Fs is a feature frame and has the format [X; Y; S; TH],
@@ -34,12 +36,12 @@ function [xs, xd] = genSIFTMatches(imgs, imgd, impl)
         % xs and xd are the centers of matched frames
         % xs and xd are nx2 matrices
     elseif strcmpi(impl, 'MATLAB')
-        if size(imgs,3) > 1
-            imgs = rgb2gray(imgs);
-        end
-        if size(imgd,3) > 1
-            imgd = rgb2gray(imgd);
-        end
+%         if size(imgs,3) > 1
+%             imgs = rgb2gray(imgs);
+%         end
+%         if size(imgd,3) > 1
+%             imgd = rgb2gray(imgd);
+%         end
         ps = detectSIFTFeatures(imgs);
         [fs, vpts] = extractFeatures(imgs, ps);
         pd = detectSIFTFeatures(imgd);

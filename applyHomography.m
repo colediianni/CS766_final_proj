@@ -1,21 +1,12 @@
 function dest_pts_nx2 = applyHomography(H_3x3, src_pts_nx2)
 
-% disp(size(src_pts_nx2))
-NewCol = ones(size(src_pts_nx2, 1),1);
-% disp(size(NewCol))
-%Add new column
-points = [src_pts_nx2 NewCol];
-% disp(size(points))
-% disp(points)
+dest_pts_nx2_temp = zeros(size(src_pts_nx2));
 
-dest_pts = transpose(H_3x3 * transpose(points));
+for n=1:length(src_pts_nx2)
+    dest_n = H_3x3*[src_pts_nx2(n,:)';1];
+    dest_pts_nx2_temp(n, :) = dest_n(1:2)'/dest_n(3);
+end
 
-% disp(size(dest_pts))
-% disp(dest_pts)
+dest_pts_nx2 = dest_pts_nx2_temp;
 
-dest_pts = dest_pts ./ dest_pts(:, 3);
-
-% disp(size(dest_pts))
-% disp(dest_pts)
-
-dest_pts_nx2 = dest_pts(:, 1:2);
+end

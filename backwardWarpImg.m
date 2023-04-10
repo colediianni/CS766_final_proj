@@ -1,33 +1,21 @@
 function [mask, result_img] = backwardWarpImg(src_img, resultToSrc_H,...
     dest_canvas_width_height)
 
-result_img = zeros(dest_canvas_width_height(2), dest_canvas_width_height(1), 3) - 1;
+out_img = zeros(dest_canvas_width_height(2), dest_canvas_width_height(1), 3);
+mask = zeros(dest_canvas_width_height(2), dest_canvas_width_height(1),1);
+for n=1:dest_canvas_width_height(2)
+    for m = 1:dest_canvas_width_height(1)
+        dest_point = resultToSrc_H*[m; n; 1];
+        dest_point_r = round(dest_point(1:2)/dest_point(3));
+        if dest_point_r(1)>=1 && dest_point_r(1)<=size(src_img,2)&& dest_point_r(2)>=1 && dest_point_r(2)<=size(src_img,1)
+            out_img(n, m,:) = src_img(dest_point_r(2), dest_point_r(1),:);
+            mask(n,m,:) = 1;
+        else
 
-src_height = size(src_img, 1);
-src_width = size(src_img, 2);
-height = dest_canvas_width_height(1);
-width = dest_canvas_width_height(2);
-% count = 0;
-
-for h = 1:height
-    for w = 1:width
-        coord = resultToSrc_H * [w; h; 1];
-        coord = coord / coord(3);
-        if round(coord(1)) > 0 && round(coord(1)) <= src_width && round(coord(2)) > 0 && round(coord(2)) <= src_height 
-%             disp(round(coord(2)))
-            result_img(h, w, :) = src_img(round(coord(2)), round(coord(1)), :);
-%             count = count + 1;
-%             disp(coord)
         end
-
     end
 end
-mask = sum(result_img, 3) >= 0;
 
-result_img(result_img==-1)=0;
-% disp(src_height*src_width)
-% disp(count)
+result_img = out_img;
 
-
-
-
+end
