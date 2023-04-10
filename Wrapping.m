@@ -21,36 +21,36 @@ montage({polscope, HE, TRI, PSR_BF, PSR_POL})
 
 %% select points
 
-figure(3)
-imshow(polscope)
-[x_ps, y_ps] = ginput(4);
-hold on
-scatter(x_ps, y_ps, 'filled')
-figure(4)
-imshow(HE)
-[x_HE, y_HE] = ginput(4);
-figure(5)
-imshow(TRI)
-[x_TRI, y_TRI] = ginput(4);
-figure(6)
-imshow(PSR_BF)
-[x_BF, y_BF] = ginput(4);
+% figure(3)
+% imshow(polscope)
+% [x_ps, y_ps] = ginput(4);
+% hold on
+% scatter(x_ps, y_ps, 'filled')
+% figure(4)
+% imshow(HE)
+% [x_HE, y_HE] = ginput(4);
+% figure(5)
+% imshow(TRI)
+% [x_TRI, y_TRI] = ginput(4);
+% figure(6)
+% imshow(PSR_BF)
+% [x_BF, y_BF] = ginput(4);
 % figure(7)
 % imshow(PSR_POL)
 % [x_pol, y_pol] = ginput(4);
 
 %% compute homology
 
-scr_pts = cat(3, [x_HE, y_HE], [x_TRI, y_TRI], [x_BF, y_BF]);
-
-for n = 1:3
-    H(:,:,n) = computeHomography([x_ps, y_ps],scr_pts(:,:,n));
-end
-
-[mask, result_img]=backwardWarpImg(polscope, inv(H(:,:,2)), size(TRI,2,1));
-
-figure(8)
-imshow(uint16(result_img(:,:,1)))
+% scr_pts = cat(3, [x_HE, y_HE], [x_TRI, y_TRI], [x_BF, y_BF]);
+% 
+% for n = 1:3
+%     H(:,:,n) = computeHomography([x_ps, y_ps],scr_pts(:,:,n));
+% end
+% 
+% [mask, result_img]=backwardWarpImg(polscope, inv(H(:,:,2)), size(TRI,2,1));
+% 
+% figure(8)
+% imshow(uint16(result_img(:,:,1)))
 
 %% Segment images
 
