@@ -1,23 +1,92 @@
 %% load images
-%polscope = flip(imread('stitched_Day1_HE_slide1.tif'),2);
-% HE = imread('HE_01.ome.tif');
-TRI = imread('NMID1_Tri_02_10x.ome_crop.tif (RGB).tif');
-% PSR_BF = imread('PSR 4x region crop.ome.tif (RGB).tif');
-% PSR_POL = imread('PSR Pol large image 10x.ome.tif');
+fds = fileDatastore('*.tif', 'ReadFcn', @importdata);
 
+fullFileNames = fds.Files;
 
+numFiles = length(fullFileNames);
+
+for i=1:length(fullFileNames)
+    image{i} = imread(fullFileNames{i});
+end
 %% check left right orientations are same
 
 figure(1)
-montage({polscope, HE, TRI, PSR_BF, PSR_POL})
+montage(image)
 
-HE = flip(HE);
-TRI = flip(TRI);
-PSR_BF = flip(PSR_BF, 2);
-PSR_POL = flip(PSR_POL, 2);
+x = 5; 
+image{x}=flip(image{x},2);
 
 figure(2)
-montage({polscope, HE, TRI, PSR_BF, PSR_POL})
+montage(image)
+
+
+%% Segment images
+
+%y=round(size(polscope,1)/1000);
+%x=round(size(polscope,2)/1000);
+% y = 2;
+% x = 2;
+% segim = imagesegments(polscope, y, x);
+
+%% run sift
+
+%polscope = imbinarize(image{5},0.1);
+polscope = rgb2gray(image{2});
+%BF = 1-imbinarize(rgb2gray(image{1}),0.5);
+BF = rgb2gray(image{1});
+montage({polscope, BF})
+%%
+
+Pol_2 = imresize(polscope, 0.5);
+BF_2 = imresize(BF, 0.25);
+% figure()
+% montage({Pol_2, TRI_2})
+%%
+[xs, xd] = genSIFTMatches(im2single(Pol_2), im2single(BF_2));
+
+figure()
+imshow(Pol_2)
+hold on
+plot(xs(:,1), xs(:,2), 'ro', 'MarkerFaceColor','r')
+
+figure()
+imshow(BF_2)
+hold on
+plot(xd(:,1), xd(:,2), 'ro', 'MarkerFaceColor','r')
+
+BF_3 = padarray(BF_2, (size(Pol_2, 1, 2)-size(BF_2, 1, 2)), 0, 'post');
+%Pol_3 = padarray(Pol_2, (size(BF_2, 1, 2)-size(Pol_2, 1, 2)), 0, 'post');
+% figure()
+showCorrespondence( im2single(Pol_2), im2single(BF_3), xs, xd);
+%%
+
+ransac_n = 3000; % Max number of iterations
+ransac_eps = 100; %Acceptable alignment error 
+
+[inliers_id, H_3x3] = runRANSAC(xs, xd, ransac_n, ransac_eps);
+
+figure()
+imshow(Pol_2)
+hold on
+plot(xs(inliers_id,1), xs(inliers_id,2), 'ro', 'MarkerFaceColor','r')
+
+figure()
+imshow(BF_2)
+hold on
+plot(xd(inliers_id,1), xd(inliers_id,2), 'ro', 'MarkerFaceColor','r')
+
+figure()
+showCorrespondence(im2single(Pol_2), im2single(BF_3), xs(inliers_id,:), xd(inliers_id, :));
+% 
+% figure()
+% imshow(HE)
+% hold on
+% plot(xs(inliers_id, 1), xs(inliers_id, 2), 'ro', 'MarkerFaceColor','r')
+% 
+% figure()
+% imshow(TRI)
+% hold on
+% plot(xd(inliers_id, 1), xd(inliers_id, 2), 'ro', 'MarkerFaceColor','r')
 
 %% select points
 
@@ -51,70 +120,3 @@ montage({polscope, HE, TRI, PSR_BF, PSR_POL})
 % 
 % figure(8)
 % imshow(uint16(result_img(:,:,1)))
-
-%% Segment images
-
-%y=round(size(polscope,1)/1000);
-%x=round(size(polscope,2)/1000);
-y = 2;
-x = 2;
-segim = imagesegments(polscope, y, x);
-
-%% run sift
-%image = imread()
-%polscope = imbinarize(polscope,0.1);
-TRI = 1-imbinarize(rgb2gray(TRI),0.6);
-%%
-
-Pol_2 = imresize(polscope, 0.25);
-%Pol_2 = 1-bwareaopen(1-bwareaopen(Pol_2, 100),100);
-TRI_2 = imresize(TRI, 0.5);
-%TRI_2 = 1-bwareaopen(1-bwareaopen(TRI_2, 10),10);
-% figure()
-% montage({Pol_2, TRI_2})
-%%
-[xs, xd] = genSIFTMatches(im2single(Pol_2), im2single(TRI_2));
-
-figure()
-imshow(Pol_2)
-hold on
-plot(xs(:,1), xs(:,2), 'ro', 'MarkerFaceColor','r')
-
-figure()
-imshow(TRI_2)
-hold on
-plot(xd(:,1), xd(:,2), 'ro', 'MarkerFaceColor','r')
-%%
-%TRI_3 = padarray(TRI_2, (size(Pol_2, 1, 2)-size(TRI_2, 1, 2)), 0, 'post');
-Pol_3 = padarray(Pol_2, (size(TRI_2, 1, 2)-size(Pol_2, 1, 2)), 0, 'post');
-figure()
-showCorrespondence( im2single(Pol_3), im2single(TRI_2), xs, xd);
-%%
-
-ransac_n = 3000; % Max number of iterations
-ransac_eps = 100; %Acceptable alignment error 
-
-[inliers_id, H_3x3] = runRANSAC(xs, xd, ransac_n, ransac_eps);
-
-figure()
-imshow(Pol_2)
-hold on
-plot(xs(inliers_id,1), xs(inliers_id,2), 'ro', 'MarkerFaceColor','r')
-
-figure()
-imshow(TRI_2)
-hold on
-plot(xd(inliers_id,1), xd(inliers_id,2), 'ro', 'MarkerFaceColor','r')
-
-figure()
-showCorrespondence(im2single(Pol_2), im2single(rgb2gray(TRI_3)), xs(inliers_id,:), xd(inliers_id, :));
-% 
-% figure()
-% imshow(HE)
-% hold on
-% plot(xs(inliers_id, 1), xs(inliers_id, 2), 'ro', 'MarkerFaceColor','r')
-% 
-% figure()
-% imshow(TRI)
-% hold on
-% plot(xd(inliers_id, 1), xd(inliers_id, 2), 'ro', 'MarkerFaceColor','r')
