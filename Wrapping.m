@@ -1,11 +1,17 @@
 %% load images
-%polscope = flip(imread('stitched_Day1_HE_slide1.tif'),2);
-% HE = imread('HE_01.ome.tif');
+polscope = flip(imread('stitched_Day1_HE_slide1.tif'),2);
+ HE = imread('HE_01.ome.tif');
 TRI = imread('NMID1_Tri_02_10x.ome_crop.tif (RGB).tif');
-% PSR_BF = imread('PSR 4x region crop.ome.tif (RGB).tif');
-% PSR_POL = imread('PSR Pol large image 10x.ome.tif');
+ PSR_BF = imread('PSR 4x region crop.ome.tif (RGB).tif');
+ PSR_POL = imread('PSR Pol large image 10x.ome.tif');
 
-
+ %uncomment to test sliceoutput
+ %{
+stack = {im2double(im2gray(polscope)), im2double(im2gray(HE)), im2double(im2gray(TRI)), im2double(im2gray(PSR_BF)), im2double(im2gray(PSR_POL))};
+sliceoutput(stack);
+return
+ %}
+ 
 %% check left right orientations are same
 
 figure(1)
