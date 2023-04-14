@@ -1,4 +1,5 @@
 %% load images
+
 fds = fileDatastore('*.tif', 'ReadFcn', @importdata);
 
 fullFileNames = fds.Files;
@@ -8,6 +9,14 @@ numFiles = length(fullFileNames);
 for i=1:length(fullFileNames)
     image{i} = imread(fullFileNames{i});
 end
+
+ %uncomment to test sliceoutput
+ %{
+stack = {im2double(im2gray(polscope)), im2double(im2gray(HE)), im2double(im2gray(TRI)), im2double(im2gray(PSR_BF)), im2double(im2gray(PSR_POL))};
+sliceoutput(stack);
+return
+ %}
+ 
 %% check left right orientations are same
 
 figure(1)
@@ -20,13 +29,6 @@ figure(2)
 montage(image)
 
 
-%% Segment images
-
-%y=round(size(polscope,1)/1000);
-%x=round(size(polscope,2)/1000);
-% y = 2;
-% x = 2;
-% segim = imagesegments(polscope, y, x);
 
 %% run sift
 
