@@ -29,23 +29,23 @@ function [stitched_img, stitched_img_mask] = tiled_homography(img1, img2, num_y_
 
 % assert(isequal(size(img1), size(img2)))
 img_1_size = size(img1);
-if floor(size(img1, 1) / 2) ~= size(img1, 1) / 2
-    img1 = img1(1:size(img1, 1)-1, :);
-end
-if floor(size(img1, 2) / 2) ~= size(img1, 2) / 2
-    img1 = img1(:, 1:size(img1, 2)-1);
-end
+% if floor(size(img1, 1) / 2) ~= size(img1, 1) / 2
+%     img1 = img1(1:size(img1, 1)-1, :);
+% end
+% if floor(size(img1, 2) / 2) ~= size(img1, 2) / 2
+%     img1 = img1(:, 1:size(img1, 2)-1);
+% end
 patch_size_y1 = size(img1, 1)/num_y_patches;
 patch_size_x1 = size(img1, 2)/num_x_patches;
 assert(floor(patch_size_y1)==patch_size_y1)
 assert(floor(patch_size_x1)==patch_size_x1)
 
-if floor(size(img2, 1) / 2) ~= size(img2, 1) / 2
-    img2 = img2(1:size(img2, 1)-1, :);
-end
-if floor(size(img2, 2) / 2) ~= size(img2, 2) / 2
-    img2 = img2(:, 1:size(img2, 2)-1);
-end
+% if floor(size(img2, 1) / 2) ~= size(img2, 1) / 2
+%     img2 = img2(1:size(img2, 1)-1, :);
+% end
+% if floor(size(img2, 2) / 2) ~= size(img2, 2) / 2
+%     img2 = img2(:, 1:size(img2, 2)-1);
+% end
 patch_size_y2 = size(img2, 1)/num_y_patches;
 patch_size_x2 = size(img2, 2)/num_x_patches;
 assert(floor(patch_size_y2)==patch_size_y2)
