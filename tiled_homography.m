@@ -1,4 +1,4 @@
-function stitched_img = tiled_homography(img1, img2, num_y_patches, num_x_patches)
+function [stitched_img, stitched_img_mask] = tiled_homography(img1, img2, num_y_patches, num_x_patches)
 
 % img1 = imread(fullfile('images', 'Day 3', 'NMI-D3-92222-001-20x.ome.tif'));
 % img1 = imread(fullfile('images', 'Day 5', 'NMID5_Tri_02_10x.ome.tif (RGB).tif'));
@@ -115,3 +115,6 @@ for y_patch_idx = 1:num_y_patches
 %         imshow(blended_mask)
     end
 end
+
+stitched_img = blended_result;
+stitched_img_mask = blended_mask;
