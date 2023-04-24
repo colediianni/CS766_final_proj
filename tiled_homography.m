@@ -96,8 +96,8 @@ for y_patch_idx = 1:num_y_patches
             % TODO put image2 into the center of image 1 patch?
             % TODO consider averageing the homographies of surrounding patches
         end
-        figure()
-        imshow(blended_result)
+%         figure()
+%         imshow(blended_result)
 %         imshow(blended_mask)
     end
 end
