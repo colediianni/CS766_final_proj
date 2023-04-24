@@ -56,7 +56,7 @@ assert(floor(patch_size_x2)==patch_size_x2)
 padding = 100;
 
 impl = 'MATLAB';
-ransac_n = 4000; % Max number of iterations
+ransac_n = 8000; % Max number of iterations
 ransac_eps = 5; % Acceptable alignment error 
 
 for y_patch_idx = 1:num_y_patches
@@ -88,6 +88,7 @@ for y_patch_idx = 1:num_y_patches
                 blended_result = cat(3, blended_result, blended_result, blended_result);
                 patch_dest_img = cat(3, patch_dest_img, patch_dest_img, patch_dest_img);
                 blended_result = blendImagePair(blended_result, blended_mask, patch_dest_img, patch_img_mask, 'overlay');
+                %unique(blended_result)
                 blended_result = blended_result(:, :, 1);
                 blended_mask = blended_mask + patch_img_mask;
             end
