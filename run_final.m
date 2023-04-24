@@ -13,6 +13,24 @@ img1 = imbinarize(img1, 0.09);
 img2 = 1 - imbinarize(rgb2gray(img2), 0.45);
 img2 = img2(250:850, 400:1250);
 
+if floor(size(img1, 1) / 2) ~= size(img1, 1) / 2
+    img1 = img1(1:size(img1, 1)-1, :);
+end
+if floor(size(img1, 2) / 2) ~= size(img1, 2) / 2
+    img1 = img1(:, 1:size(img1, 2)-1);
+end
+assert(floor(patch_size_y1)==patch_size_y1)
+assert(floor(patch_size_x1)==patch_size_x1)
+
+if floor(size(img2, 1) / 2) ~= size(img2, 1) / 2
+    img2 = img2(1:size(img2, 1)-1, :);
+end
+if floor(size(img2, 2) / 2) ~= size(img2, 2) / 2
+    img2 = img2(:, 1:size(img2, 2)-1);
+end
+assert(floor(patch_size_y2)==patch_size_y2)
+assert(floor(patch_size_x2)==patch_size_x2)
+
 
 
 [stitched_img, stitched_img_mask] = tiled_homography(img1, img2, 2, 2);
