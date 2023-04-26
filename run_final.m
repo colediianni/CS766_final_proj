@@ -32,7 +32,7 @@ assert(floor(patch_size_y2)==patch_size_y2)
 assert(floor(patch_size_x2)==patch_size_x2)
 
 
-[stitched_img, stitched_img_mask] = tiled_homography(img1, img2, 2, 2);
+[stitched_img, stitched_img_mask] = tiled_homography(img1, img2, 2, 2, 100);
 
 sliceoutput({stitched_img, img1, img1, img1, img1})
 
