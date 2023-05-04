@@ -45,7 +45,7 @@ Figure 4: Registration with patches (left) and no patches (right).
 
 Figure 5: Comparison of homography results with patches and without patches.
 
-The results of the project include comparisons between the program and manual measurements to quantify how well the registration worked. These measurements have been included in Table 1. Noticeably, the amount of variation in the affine transform accuracy was highly dependent on how close you were to the manually selected landmarks used to compute the transform. This meant the transform had a high accuracy near the landmarks, but was not as good globally as the homography. Examples of a measurement (computed using QuPath) and a full affine transform are shown in Figure 6. 
+The results of the project include comparisons between the program and manual measurements to quantify how well the registration worked. These measurements have been included in Table 1. Noticeably, the amount of variation in the affine transform accuracy was highly dependent on how close you were to the manually selected landmarks used to compute the transform. This meant the transform had a high accuracy near the landmarks, but was not as good globally as the homography. This drawback is likely applicable to using a gloabl homography matrix as well, only performing well in regions near the most SIFT points. Examples of a measurement (computed using QuPath) and a full affine transform are shown in Figure 6. 
 
 <!-- ![table2](https://user-images.githubusercontent.com/111527077/236090647-f3911b5d-3807-4758-aa15-dc1086e141b8.png) -->
 <img src="https://user-images.githubusercontent.com/111527077/236090647-f3911b5d-3807-4758-aa15-dc1086e141b8.png" width=30% height=30%>
@@ -66,7 +66,8 @@ Figure 7: Final result of overlaid images.
 
 One advantage of using this method is we can resize the images to calculate the homographies and then apply a transformation to apply this calculated homography to the original sized image. While we were not able to fully implement this we were able to determine the methodology to rescale our homography, here (equation 1) h is the homography matrix and s1 and s2 are our scaling factors that were used to shrink the original images.
 
-![homography](https://user-images.githubusercontent.com/111527077/236091471-494f24e3-20a2-4a06-8ae1-ff377c51fb68.png)
+<!-- ![homography](https://user-images.githubusercontent.com/111527077/236091471-494f24e3-20a2-4a06-8ae1-ff377c51fb68.png) -->
+<img src="https://user-images.githubusercontent.com/111527077/236091471-494f24e3-20a2-4a06-8ae1-ff377c51fb68.png" width=30% height=30%>
 
 Equation 1: Homography computation. 
 
