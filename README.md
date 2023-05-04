@@ -47,4 +47,4 @@ Table 1: Measurement of various landmarks in our output image and with the affin
 
 ![final](https://user-images.githubusercontent.com/111527077/236084742-686d6de9-4cb7-4ec8-b962-b3a62b5a1f76.png)
 
-Figure 5: Final result of overlaid images.
+Figure 6: Final result of overlaid images.
