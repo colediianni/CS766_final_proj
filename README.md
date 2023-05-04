@@ -37,6 +37,14 @@ Figure 3: Demonstration of cutting the image into patches.
 
 Figure 4: Comparison of homography results with patches and without patches.
 
+![measurements](https://user-images.githubusercontent.com/111527077/236090580-482caace-e49d-4212-9c39-1893653bfa1d.png)
+
+Figure 5: Examples of measurements of affine transform for comparison.
+
+![table2](https://user-images.githubusercontent.com/111527077/236090647-f3911b5d-3807-4758-aa15-dc1086e141b8.png)
+
+Table 1: Measurement of various landmarks in our output image and with the affine transform. 
+
 ![final](https://user-images.githubusercontent.com/111527077/236084742-686d6de9-4cb7-4ec8-b962-b3a62b5a1f76.png)
 
 Figure 5: Final result of overlaid images.
