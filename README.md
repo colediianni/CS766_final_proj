@@ -33,7 +33,8 @@ Figure 5: Comparison of homography results with patches and without patches.
 The results of the project include comparisons between the program and manual measurements to quantify how well the registration worked. These measurements have been included in Table 1. Noticeably, the amount of variation in the affine transform accuracy was highly dependent on how close you were to the manually selected landmarks used to compute the transform. This meant the transform had a high accuracy near the landmarks, but was not as good globally as the homography. Examples of a measurement (computed using QuPath) and a full affine transform are shown in Figure 6. 
 
 ![table2](https://user-images.githubusercontent.com/111527077/236090647-f3911b5d-3807-4758-aa15-dc1086e141b8.png)
-<img src="[https://user-images.githubusercontent.com/16319829/81180309-2b51f000-8fee-11ea-8a78-ddfe8c3412a7.png](https://user-images.githubusercontent.com/111527077/236090647-f3911b5d-3807-4758-aa15-dc1086e141b8.png)" width=50% height=50%>
+<img src="https://user-images.githubusercontent.com/111527077/236090647-f3911b5d-3807-4758-aa15-dc1086e141b8.png" width=50% height=50%>
+
 
 Table 1: Measurement of various landmarks in our output image and with the affine transform. 
 
