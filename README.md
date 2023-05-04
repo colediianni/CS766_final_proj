@@ -20,13 +20,23 @@ Our solution includes steps such as identifying landmarks in the images and usin
 The computation of this will requires a homography. The outputs of the project include comparisons between the program and manual measurements to quantify how well the registration worked (as described in the project video). We are also able to evaluate our method visually by producing masks of each modality that can be overlaid over the original H&E image in the code output.
 
 
+
+![data ](https://user-images.githubusercontent.com/111527077/236087773-1bc0d9da-3a44-412f-90d3-4b3af6c71e40.png)
+
+Figure 1: Example data set of the brightfield and polscope images. 
+
+![image](https://user-images.githubusercontent.com/111527077/236087301-f71dbdbb-6dba-476f-be36-0be329e0546a.png)
+
+Figure 2: Registration attmpt with built in MATLAB tools. 
+
 ![patches](https://user-images.githubusercontent.com/111527077/236084728-e19129ec-49ee-4f92-bc92-0e0e4d9394d6.png)
-Figure 1: Demonstration of cutting the image into patches. 
+
+Figure 3: Demonstration of cutting the image into patches. 
 
 ![comparison](https://user-images.githubusercontent.com/111527077/236084739-37e9a439-0829-46be-96ce-a29b4aab9278.png)
 
-Figure 2: Comparison of homography results with patches and without patches.
+Figure 4: Comparison of homography results with patches and without patches.
 
 ![final](https://user-images.githubusercontent.com/111527077/236084742-686d6de9-4cb7-4ec8-b962-b3a62b5a1f76.png)
 
-Figure 3: Final result of overlaid images.
+Figure 5: Final result of overlaid images.
