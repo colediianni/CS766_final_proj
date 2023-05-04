@@ -32,13 +32,16 @@ Figure 3: Demonstration of cutting the image into patches.
 Implementation and Results 
 
 Our solution includes steps such as identifying landmarks in the images and using image alignment techniques to fit the images together. For feature identification images were first binarized to reduce variation as a result of coloration and image modality. Images could not be matched without preprocessing due to the variation in color and features present. Binarizing the images to the background and foreground to produce distinct patterns that were more consistent between samples. This preprocessing allowed shared features to be identified using SIFT. Finally, the images are broken into patches which allows for improved local registration over a global homography (Figure 3, 4, 5). Homographies are then calculated for each region and then mapped to the other image. 
-The final output from our alignment process is an image highlighting green (image A material only), red (image B material only), white (both image material), and black areas (no material from either image). From the images below in Figure 4, we see our patch-based alignment (left) is extremely similar overall to the global homography alignment (right). However, detailed inspection reveals small gaps between the patches. While fluid transitions from one patch to another would have been ideal, this result is unsurprising given each patch had to match SIFT points focused around the center of the patch rather than the center of the image. We also found that using patches allowed the image to better align small details in the image. This is attributed to the different image sections only requiring local image consistency.
+
+
+The final output from our alignment process is an image highlighting green (image A material only), red (image B material only), white (both image material), and black areas (no material from either image). From the images below in Figure 4, we see our patch-based alignment (left) is extremely similar overall to the global homography alignment (right). However, detailed inspection reveals small gaps between the patches. While fluid transitions from one patch to another would have been ideal, this result is unsurprising given each patch had to match SIFT points focused around the center of the patch rather than the center of the image. We also found that using patches allowed the image to better align small details in the image (Figure 5). This is attributed to the different image sections only requiring local image consistency.
 
 ![patches left](https://user-images.githubusercontent.com/111527077/236092269-70e37eb0-36ff-4689-a921-622628e5c36d.png)
 
 Figure 4: Registration with patches (left) and no patches (right).
 
-![comparison](https://user-images.githubusercontent.com/111527077/236084739-37e9a439-0829-46be-96ce-a29b4aab9278.png)
+<!-- ![comparison](https://user-images.githubusercontent.com/111527077/236084739-37e9a439-0829-46be-96ce-a29b4aab9278.png) -->
+<img src="https://user-images.githubusercontent.com/111527077/236084739-37e9a439-0829-46be-96ce-a29b4aab9278.png" width=50% height=50%>
 
 Figure 5: Comparison of homography results with patches and without patches.
 
