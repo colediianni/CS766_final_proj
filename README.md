@@ -58,12 +58,16 @@ In future works, we hope to test the rescaling of the homography matrices on hel
 
 References:
 
-Dan Mueller, Dirk Vossen, Bas Hulsken. (2011). Real-time deformable registration of multi-modal whole slides for digital pathology. Computerized Medical Imaging and Graphics. ISSN 0895-6111, Volume 35, Issues 7–8, Pages 542-556, https://doi.org/10.1016/j.compmedimag.2011.06.006.
-Jeremy L Muhlich, Yu-An Chen, Clarence Yapp, Douglas Russell, Sandro Santagata, Peter K Sorger, Stitching and registering highly multiplexed whole-slide images of tissues and tumors using ASHLAR, Bioinformatics, Volume 38, Issue 19, 1 October 2022, Pages 4613–4621, https://doi.org/10.1093/bioinformatics/btac544
-Krishna, V. et al. (2021). GloFlow: Whole Slide Image Stitching from Video Using Optical Flow and Global Image Alignment. In: , et al. Medical Image Computing and Computer Assisted Intervention – MICCAI 2021. MICCAI 2021. Lecture Notes in Computer Science(), vol 12908. Springer, Cham. https://doi.org/10.1007/978-3-030-87237-3_50
-MATLAB, imregister, https://www.mathworks.com/help/images/ref/imregister.html
-Lowe, D. G. (2004). Distinctive Image Features from Scale-Invariant Keypoints. International Journal of Computer Vision, 60(2), 91–110. doi:10.1023/b:visi.0000029664.99615.94
-Bankhead, P. et al. QuPath: Open source software for digital pathology image analysis. Scientific Reports (2017).
-https://doi.org/10.1038/s41598-017-17204-5
-Bankhead,P. “QuPath Extension Align,” https://github.com/qupath/qupath-extension-align
+1. Dan Mueller, Dirk Vossen, Bas Hulsken. (2011). Real-time deformable registration of multi-modal whole slides for digital pathology. Computerized Medical Imaging and Graphics. ISSN 0895-6111, Volume 35, Issues 7–8, Pages 542-556, https://doi.org/10.1016/j.compmedimag.2011.06.006.
 
+2. Jeremy L Muhlich, Yu-An Chen, Clarence Yapp, Douglas Russell, Sandro Santagata, Peter K Sorger, Stitching and registering highly multiplexed whole-slide images of tissues and tumors using ASHLAR, Bioinformatics, Volume 38, Issue 19, 1 October 2022, Pages 4613–4621, https://doi.org/10.1093/bioinformatics/btac544
+
+3. Krishna, V. et al. (2021). GloFlow: Whole Slide Image Stitching from Video Using Optical Flow and Global Image Alignment. In: , et al. Medical Image Computing and Computer Assisted Intervention – MICCAI 2021. MICCAI 2021. Lecture Notes in Computer Science(), vol 12908. Springer, Cham. https://doi.org/10.1007/978-3-030-87237-3_50
+
+4. MATLAB, imregister, https://www.mathworks.com/help/images/ref/imregister.html
+
+5. Lowe, D. G. (2004). Distinctive Image Features from Scale-Invariant Keypoints. International Journal of Computer Vision, 60(2), 91–110. doi:10.1023/b:visi.0000029664.99615.94
+
+6. Bankhead, P. et al. QuPath: Open source software for digital pathology image analysis. Scientific Reports (2017). https://doi.org/10.1038/s41598-017-17204-5
+
+8. Bankhead,P. “QuPath Extension Align,” https://github.com/qupath/qupath-extension-align
